@@ -27,8 +27,8 @@ regions = unique(data_df$region)
 # exp_earn_plot = function(){
 #   
 # 
-#   # subset = data_df |>
-#   #   filter(city %in% city_name) |>
+#   # subset = data_df %>%
+#   #   filter(city %in% city_name) %>%
 #   #   mutate(monthly_surplus = Expected_earnings - all)
 #   
 #   
@@ -46,9 +46,9 @@ app = Dash$new()
 
 app$layout(dbcContainer(
   list(dccDropdown( id= "city-names",
-                options = data_df |>
-                  select(city) |>
-                  pull() |>
+                options = data_df %>%
+                  select(city) %>%
+                  pull() %>%
                   purrr::map(function(col) list(label = col, value = col)),
                 multi = TRUE, 
                 value=c('Vancouver','Calgary','New York City','London')
@@ -66,8 +66,8 @@ app$callback(
   list(input('city-names', 'value'),
        input('expected-earnings', 'value')),
   function(cities, earning) {
-    subset <- data_df |>
-      filter(city %in% cities) |>
+    subset <- data_df %>%
+      filter(city %in% cities) %>%
       mutate(surplus = earning - all  )
     p <- ggplot(subset, aes(
       x = city,
