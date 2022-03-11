@@ -4,8 +4,8 @@ library(ggplot2)
 library(plotly)
 
 
-data_df = read.csv("data/processed_data.csv")
-price_subset = list(
+data_df <- read.csv("data/processed_data.csv")
+price_subset <- list(
   list(print="Total Monthly cost", column="all"),
   list(print="Basic Groceries", column= "grocery_for_one_person"),
   list(print="Childcare", column ="childcare_for_one_child"),
@@ -17,32 +17,11 @@ price_subset = list(
   list(print="Utilities", column="utility_bills")
 )
 
-cities = unique(data_df$city)
-regions = unique(data_df$region)
+cities <- unique(data_df$city)
+regions <- unique(data_df$region)
 
 
-# names = list(fnameDict.keys())
-# nestedOptions = fnameDict[names[0]]
-# 
-# exp_earn_plot = function(){
-#   
-# 
-#   # subset = data_df %>%
-#   #   filter(city %in% city_name) %>%
-#   #   mutate(monthly_surplus = Expected_earnings - all)
-#   
-#   
-#   p <- ggplot(data_df, aes(
-#     x= city,
-#     y=monthly_saving, 
-#     fill= city))+
-#     geom_col(show.legend = FALSE)  +
-#     labs(x= "Monthly Surplus (USD)", y="City", 
-#          title= "Salary minus the monthly cost of living")
-#   ggplotly(p)
-# }
-
-app = Dash$new()
+app <- Dash$new()
 
 app$layout(dbcContainer(
   list(dccDropdown( id= "city-names",
